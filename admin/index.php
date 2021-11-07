@@ -24,6 +24,12 @@
             <nav>
                 <a href="#" id="icono" class="icono"><img src="../img/menu-alt-right-regular-24.png" class="img-icon"></a>
                 <div class="enlaces uno" id="enlaces">
+                <a href="web/alumnos.php">Alumnos</a>
+                    <a href="web/carreras.php">Carreras</a>
+                    <a href="web/docentes.php">Docentes</a>
+                    <a href="web/grupos.php">Grupos</a>
+                    <a href="web/tutores.php">Tutores</a>
+                    <a href="web/confirmados.php">Permisos confirmados</a>
                     <a href="web/actions/cerrars.php">Cerrar Sesión</a>
                 </div>
             </nav>
@@ -46,7 +52,7 @@
             </svg>
         </div>
     </div>
-    
+
     <script src="../js/script.js"></script>
 </body>
 </html>
