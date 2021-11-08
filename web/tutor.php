@@ -7,6 +7,7 @@
 		header('location: ../login/index.html');
 	}	
 	}
+    $tutor=$_SESSION['nombre'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +48,66 @@
             </svg>
         </div>
     </div>
+
+    <?php 
+    
+        include_once('../bd/db.php');
+        $db = new Database();
+
+        $consulta= $db->connect()->prepare('SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user ORDER BY tx_appaterno ASC');
+        $row = $consulta->fetch(PDO::FETCH_NUM);
+
+        if(isset($row)){
+            ?>
+            <br><br><br><center>
+            <table class="tabla_datos">
+                <thead>
+                    <tr id='titulo'>
+                        <td>Matricula</td>
+                        <td>A. paterno</td>
+                        <td>A. materno</td>
+                        <td>nombre</td>
+                        <td>Dias del permiso</td>
+                        <td>Motivo</td>
+                        <td>N° Permiso</td>
+                        <td>Status</td>
+                        <td>Fecha de solicitud</td>
+                        <td>Observación</td>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <?php
+                $tutor=$_SESSION['nombre'];
+                $sql="SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso='pendiente' AND tutor=$tutor";
+                $result=mysqli_query($con,$sql);
+
+                while($mostrar=mysqli_fetch_array($result)){
+                    ?>
+
+                    <tr>
+                        <td><?php echo $mostrar['matriculauser'] ?></td>
+                        <td><?php echo $mostrar['tx_appaterno'] ?></td>
+                        <td><?php echo $mostrar['tx_apmaterno'] ?></td>
+                        <td><?php echo $mostrar['tx_nombreuser'] ?></td>
+                        <td><?php echo ($mostrar['dias']." de ". $mostrar['mes']." del ". $mostrar['anio'])?></td>
+                        <td><?php echo $mostrar['motivo'] ?></td>
+                        <td><?php echo $mostrar['No_permiso'] ?></td>
+                        <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
+                        <td><?php echo $mostrar['dt_solicitud'] ?></td>
+                        <td><input type="text" name="observaciones" placeholder="Observaciones"></td>
+                        <td><a class="btn-mod">Confirmar</a>
+                        | 
+                            <a class="btn-warning">Rechazar</a></td>
+                    </tr>
+                    <?php 
+                }
+            ?>
+                </table>
+                </center>
+            <?php
+        }
+    ?>
 
     <script src="../js/script.js"></script>
 </body>

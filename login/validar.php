@@ -65,6 +65,7 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 		# code...
 		$rol = $row[7];
 		$_SESSION['rol']=$rol;
+		$num_s=$nombre;
 
 		switch ($_SESSION['rol']) {
 		case 1:
@@ -74,8 +75,11 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 
 		case 2:
 			# code...
-			header('location: ../web/tutor.php?nombre='.$nombre);
-			print $nombre;
+			header('location: ../web/tutor.php');
+			session_start();
+
+			$_SESSION["nombre"] = $nombre;
+			
 		break;
 		
 		default:
