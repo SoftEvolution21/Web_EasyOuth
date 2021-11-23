@@ -41,8 +41,6 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 
 	}else{
 		?>
-		<link rel="stylesheet" href="css/login.css">
-    	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
 
 		<h1 style="background-color: red; color: white;">No se puede iniciar sesión con esas credenciales</h1>
 
@@ -75,7 +73,11 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 
 		case 2:
 			# code...
-			header('location: ../web/tutor.php');
+			?>
+				<script> 
+                    window.location.replace("../web/tutor.php");
+                </script>
+			<?php
 			session_start();
 
 			$_SESSION["nombre"] = $nombre;

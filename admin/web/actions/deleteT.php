@@ -2,9 +2,14 @@
 
 include_once "../../../bd/db.php";
 $id = $_GET['id'];
-$query = "DELETE FROM tbl_user WHERE idtbl_user=$id";
+$query = "DELETE FROM tutor WHERE id_tutor=$id";
 $res = mysqli_query($con, $query);
 if ($res) {
-	header('location:../tutores.php');
+	?>
+		<script>
+			alert('Se elimino al tutor de manera correcta');
+			window.location.replace("../personal.php");
+		</script>
+	<?php
 }
 ?>

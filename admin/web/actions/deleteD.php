@@ -5,6 +5,11 @@ $id = $_GET['id'];
 $query = "DELETE FROM tbl_user WHERE idtbl_user=$id";
 $res = mysqli_query($con, $query);
 if ($res) {
-	header('location:../docentes.php');
+	?>
+		<script>
+			alert('Se elimino al Docente de manera correcta');
+			window.location.replace("../personal.php");
+		</script>
+	<?php
 }
 ?>
