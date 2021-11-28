@@ -160,14 +160,14 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Menú</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class="active">
-                                <a href="#" class="waves-effect waves-dark">
+                                <a href="tutor.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class=" ">
-                                <a href="#" class="waves-effect waves-dark">
+                                <a href="foro.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-comments"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Foro</span>
                                     <span class="pcoded-mcaret"></span>
@@ -253,7 +253,7 @@
                                                             <?php
                                                               include_once('../bd/db.php');
                                                               $tutor=$_SESSION['nombre'];
-                                                              $sql="SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso='pendiente' AND tutor=$tutor";
+                                                              $sql="SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso='Pendiente' AND tutor=$tutor";
                                                               $result=mysqli_query($con,$sql);
 
                                                               while($mostrar=mysqli_fetch_array($result)){
@@ -269,17 +269,21 @@
                                                                       <td><?php echo $mostrar['No_permiso'] ?></td>
                                                                       <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
                                                                       <td><?php echo $mostrar['dt_solicitud'] ?></td>
-                                                                      <td><input type="text" name="observaciones" placeholder="Observaciones"></td>
-                                                                      <td>
-                                                                        <a href="" class="waves-effect waves-dark">
-                                                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Aceptar |</span>
-                                                                        <span class="pcoded-mcaret"></span>
-                                                                        </a>
-                                                                        
-                                                                        <a href="" class="waves-effect waves-dark">
-                                                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">| Rechazar</span>
-                                                                        <span class="pcoded-mcaret"></span>
-                                                                        </a></td>
+                                                                      <form action="confirmado.php?id=<?php print $mostrar['idsolicitudpermiso']?>" method="post">
+                                                                            <td><input type="text" name="observaciones" placeholder="Observaciones"></td>
+                                                                            <td>
+                                                                                <button name="guardar" class="waves-effect waves-dark">
+                                                                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Aceptar</span>
+                                                                                <span class="pcoded-mcaret"></span>
+                                                                                </button>
+                                                                                
+                                                                                <button name="eliminar" class="waves-effect waves-dark">
+                                                                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Rechazar</span>
+                                                                                <span class="pcoded-mcaret"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                      </form>
+                                                                      
                                                                   </tr>
                                                                   <?php 
                                                               }
