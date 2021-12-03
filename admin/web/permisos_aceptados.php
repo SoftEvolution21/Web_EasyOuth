@@ -1,3 +1,13 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['rol'])){
+		header('location: ../../index.html');
+	}else{
+	if($_SESSION['rol'] != 1){
+		header('location: ../../index.html');
+	}	
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -113,11 +123,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
-                          <img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
+                      <a>
+                          <img class="img-fluid" src="../../assets/images/logo.png" alt="Theme-Logo" />
                       </a>
                   </div>
                 
@@ -159,37 +166,37 @@
                                 </a>
                             </li>
                               <li class=" ">
-                                  <a href="alumnos.html" class="waves-effect waves-dark">
+                                  <a href="alumnos.php" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                       <span class="pcoded-mtext" data-i18n="nav.dash.main">Alumnos</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
                               <li class=" ">
-                                    <a href="carreras.html" class="waves-effect waves-dark">
+                                    <a href="carreras.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-pencil"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Carreras</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 </li>
                             <li class=" ">
-                                <a href="personal.html" class="waves-effect waves-dark">
+                                <a href="personal.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-notepad"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Personal</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class=" ">
-                                <a href="foro.html" class="waves-effect waves-dark">
+                                <a href="foro.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-comments"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Foro</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="active">
-                                <a href="permisos_aceptados.html" class="waves-effect waves-dark">
+                                <a href="permisos_aceptados.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos Aceptados</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -197,7 +204,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Datos</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class=" ">
-                                <a href="reg_datos.html" class="waves-effect waves-dark">
+                                <a href="reg_datos.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-write"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Registrar Nuevos Datos</span>
                                     <span class="pcoded-mcaret"></span>
@@ -207,7 +214,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sesión</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class=" ">
-                                <a href="index.html" class="waves-effect waves-dark">
+                                <a href="actions/cerrars.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Cerrar Sesión</span>
                                     <span class="pcoded-mcaret"></span>
@@ -251,7 +258,7 @@
                                     <!-- Hover table card start -->
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Permisos Solicitados</h5>
+                                                <h5>Permisos</h5>
                                                 <div class="card-header-right">
                                                     <ul class="list-unstyled card-option">
                                                         <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -263,65 +270,46 @@
                                                 </div>
                                             </div>
                                             <div class="card-block table-border-style">
+                                                    <!--<span class="pcoded-mtext" data-i18n="nav.dash.main">Eliminar Permisos</span>-->
+                                                <a href="actions/eliminar.php" class="btn btn-danger btn-round waves-effect waves-dark">Eliminar Permisos</a>
                                                 <div class="table-responsive">
                                                     <table class="table table-hover">
                                                         <thead>
                                                             <tr class="bg-primary">
-                                                                <th>Matrícula</th>
-                                                                <th>Apellido Paterno</th>
-                                                                <th>Apellido Materno</th>
-                                                                <th>Nombre</th>
-                                                                <th>Fecha</th>
-                                                                <th>Tipo de Permiso</th>
+                                                                <th>Matricula</th>
+                                                                <th>Alumno</th>
+                                                                <th>Carrera</th>
+                                                                <th>Cuatrimestre</th>
+                                                                <th>Grupo</th>
+                                                                <th>Dias del permiso</th>
+                                                                <th>Motivo</th>
                                                                 <th>Status</th>
+                                                                <th>Observación</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <?php
+                                                            include_once('../../bd/db.php');
+                                                            $sql='SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user INNER JOIN carrera ON tbl_user.idcarrera = carrera.idcarrera INNER JOIN cuatrimestre ON tbl_user.idcuatrimestre = cuatrimestre.idcuatrimestre INNER JOIN grupo ON tbl_user.idgrupo = grupo.idgrupo 
+                                                            WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso="Autorizado" ORDER BY tx_carrera ASC';
+                                                            $result=mysqli_query($con,$sql);
+
+                                                        while($mostrar=mysqli_fetch_array($result)){
+                                                        ?>
                                                             <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
+                                                                <td><?php echo $mostrar['matriculauser'] ?></td>
+                                                                <td><?php echo $mostrar['tx_appaterno']." ". $mostrar['tx_apmaterno']." ". $mostrar['tx_nombreuser'] ?></td>
+                                                                <td><?php echo $mostrar['tx_carrera'] ?></td>
+                                                                <td><?php echo $mostrar['tx_cuatrimestre'] ?></td>
+                                                                <td><?php echo $mostrar['tx_grupo'] ?></td>
+                                                                <td><?php echo ($mostrar['dias']." de ". $mostrar['mes']." del ". $mostrar['anio']) ?></td>
+                                                                <td><?php echo $mostrar['motivo'] ?></td>
+                                                                <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
+                                                                <td><?php echo $mostrar['observaciones']?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">4</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">5</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
+                                                                <?php 
+                                                        }
+                                                        ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -341,51 +329,6 @@
             </div>
         </div>
     </div>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="http://www.google.com/chrome/">
-                        <img src="../assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="../assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.opera.com">
-                        <img src="../assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.apple.com/safari/">
-                        <img src="../assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="../assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
-    <![endif]-->
-    <!-- Warning Section Ends -->
-    
     <!-- Required Jquery -->
     <script type="text/javascript" src="../../assets/js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/jquery-ui/jquery-ui.min.js "></script>

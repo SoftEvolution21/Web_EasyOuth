@@ -24,7 +24,7 @@
       <!-- Required Fremwork -->
       <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap/css/bootstrap.min.css">
       <!-- waves.css -->
-      <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+      <link rel="stylesheet" href="../assets/pages/waves/css/waves.min.css" type="text/css" media="all">
       <!-- themify-icons line icon -->
       <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
       <!-- ico font -->
@@ -127,7 +127,6 @@
                                     <hr/>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0">Gracias</p>
                                             <p class="text-inverse text-left"><a href="../index.html"><b>Volver al Home</b></a></p>
                                         </div>
                                         <div class="col-md-2">

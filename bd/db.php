@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","db_permisos"); 
+$con = mysqli_connect("localhost","root","","permisos_p"); 
 
 class Database
 {
@@ -14,7 +14,7 @@ class Database
 	public function __construct()
 	{
 		$this->host = 'localhost';
-		$this->db = 'db_permisos';
+		$this->db = 'permisos_p';
 		$this->user = 'root';
 		$this->password = '';
 		$this->charset = 'utf8mb4';

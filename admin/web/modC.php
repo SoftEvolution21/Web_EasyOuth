@@ -1,3 +1,13 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['rol'])){
+		header('location: ../../index.html');
+	}else{
+	if($_SESSION['rol'] != 1){
+		header('location: ../../index.html');
+	}	
+	}
+?>
 <?php  
 include_once "../../bd/db.php";
 $id = $_GET['id'];
@@ -120,11 +130,8 @@ while($mostrar=mysqli_fetch_array($resd)){
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
+                      <a>
                           <img class="img-fluid" src="../../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
                       </a>
                   </div>
                 
@@ -195,7 +202,7 @@ while($mostrar=mysqli_fetch_array($resd)){
                             <li class=" ">
                                 <a href="permisos_aceptados.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos Aceptados</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>

@@ -1,10 +1,10 @@
 <?php 
 	session_start();
 	if(!isset($_SESSION['rol'])){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}else{
 	if($_SESSION['rol'] != 1){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}	
 	}
 ?>
@@ -12,7 +12,7 @@
 <html lang="es">
 
 <head>
-    <title>Carreras</title>
+    <title>Admin</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -123,11 +123,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
+                      <a>
                           <img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
                       </a>
                   </div>
                 
@@ -187,7 +184,7 @@
                                 </a>
                             </li>
                             <li class=" ">
-                                <a href="web/foro.php" class="waves-effect waves-dark">
+                                <a href="web/foro.php" class="waves-effect waves-dark" id="inp3">
                                     <span class="pcoded-micon"><i class="ti-comments"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Foro</span>
                                     <span class="pcoded-mcaret"></span>
@@ -196,7 +193,7 @@
                             <li class=" ">
                                 <a href="web/permisos_aceptados.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos Aceptados</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -270,61 +267,49 @@
                                                     <table class="table table-hover">
                                                         <thead>
                                                             <tr class="bg-primary">
-                                                                <th>Matrícula</th>
-                                                                <th>Apellido Paterno</th>
-                                                                <th>Apellido Materno</th>
-                                                                <th>Nombre</th>
-                                                                <th>Fecha</th>
-                                                                <th>Tipo de Permiso</th>
+                                                                <th>Matricula</th>
+                                                                <th>Alumno</th>
+                                                                <th>Carrera</th>
+                                                                <th>Cuatrimestre</th>
+                                                                <th>Grupo</th>
+                                                                <th>Dias del permiso</th>
+                                                                <th>Motivo</th>
                                                                 <th>Status</th>
+                                                                <th>Observación del tutor</th>
+                                                                <th>Observación</th>
+                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <?php
+                                                            include_once('../bd/db.php');
+                                                            $sql='SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user INNER JOIN carrera ON tbl_user.idcarrera = carrera.idcarrera INNER JOIN cuatrimestre ON tbl_user.idcuatrimestre = cuatrimestre.idcuatrimestre INNER JOIN grupo ON tbl_user.idgrupo = grupo.idgrupo 
+                                                            WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso="En espera" ORDER BY tx_carrera ASC';
+                                                            $result=mysqli_query($con,$sql);
+
+                                                        while($mostrar=mysqli_fetch_array($result)){
+                                                        ?>
                                                             <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
+                                                                <td><?php echo $mostrar['matriculauser'] ?></td>
+                                                                <td><?php echo $mostrar['tx_appaterno']." ". $mostrar['tx_apmaterno']." ". $mostrar['tx_nombreuser'] ?></td>
+                                                                <td><?php echo $mostrar['tx_carrera'] ?></td>
+                                                                <td><?php echo $mostrar['tx_cuatrimestre'] ?></td>
+                                                                <td><?php echo $mostrar['tx_grupo'] ?></td>
+                                                                <td><?php echo ($mostrar['dias']." de ". $mostrar['mes']." del ". $mostrar['anio']) ?></td>
+                                                                <td><?php echo $mostrar['motivo'] ?></td>
+                                                                <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
+                                                                <td><?php echo $mostrar['observaciones'] ?></td>
+                                                                <form action="confirmar.php?id=<?php print $mostrar['idsolicitudpermiso']?>" method="post">
+                                                                    <td><input type="text" name="observaciones" placeholder="Observaciones" id="inp1"></td>
+                                                                    <td>
+                                                                        <button class="btn btn-success btn-round waves-effect waves-light" name="guardar" type="submit" id="inp2">Confirmar</button>
+                                                                        <button class="btn btn-danger btn-round waves-effect waves-light" name="eliminar" type="submit">Rechazar</button>
+                                                                    </td>
+                                                                </form>
                                                             </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">4</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">5</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
+                                                                <?php 
+                                                        }
+                                                        ?>
                                                         </tbody>
                                                     </table>
                                                 </div>

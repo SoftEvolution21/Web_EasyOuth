@@ -1,5 +1,5 @@
 <?php
-include_once('../bd/db.php');
+include_once('bd/db.php');
 session_start();
 
 
@@ -27,12 +27,12 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 		switch ($_SESSION['rol']) {
 		case 1:
 			# code...
-			header('location: ../admin/index.php');
+			header('location: admin/index.php');
 		break;
 
 		case 2:
 			# code...
-			header('location: ../web/tutor.php?nombre='.$nombre);
+			header('location: web/tutor.php?nombre='.$nombre);
 			print $nombre;
 		break;
 		
@@ -61,14 +61,14 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 		switch ($_SESSION['rol']) {
 		case 1:
 			# code...
-			header('location: ../admin/index.php');
+			header('location: admin/index.php');
 		break;
 
 		case 2:
 			# code...
 			?>
 				<script> 
-                    window.location.replace("../web/tutor.php");
+                    window.location.replace("web/tutor.php");
                 </script>
 			<?php
 			session_start();
@@ -86,6 +86,6 @@ if (isset($_POST['nombre']) && isset($_POST['passwd'])) {
 				alert('No se puede iniciar sesión con esas credenciales');
 			</script>
 		<?php
-		include('../index.php');	
+		include('index.html');	
 	}
 }

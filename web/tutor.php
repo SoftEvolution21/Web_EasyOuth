@@ -1,13 +1,12 @@
 <?php 
 	session_start();
 	if(!isset($_SESSION['rol'])){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}else{
 	if($_SESSION['rol'] != 2){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}	
 	}
-    $tutor=$_SESSION['nombre'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -124,11 +123,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
+                      <a>
                           <img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
                       </a>
                   </div>
                 
@@ -270,14 +266,14 @@
                                                                       <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
                                                                       <td><?php echo $mostrar['dt_solicitud'] ?></td>
                                                                       <form action="confirmado.php?id=<?php print $mostrar['idsolicitudpermiso']?>" method="post">
-                                                                            <td><input type="text" name="observaciones" placeholder="Observaciones"></td>
+                                                                            <td><input type="text" name="observaciones" placeholder="Observaciones" id="inp1"></td>
                                                                             <td>
-                                                                                <button name="guardar" class="waves-effect waves-dark">
+                                                                                <button name="guardar" id="inp2" class="btn btn-success btn-round waves-effect waves-dark">
                                                                                 <span class="pcoded-mtext" data-i18n="nav.dash.main">Aceptar</span>
                                                                                 <span class="pcoded-mcaret"></span>
                                                                                 </button>
-                                                                                
-                                                                                <button name="eliminar" class="waves-effect waves-dark">
+
+                                                                                <button name="eliminar" class="btn btn-danger btn-round waves-effect waves-dark">
                                                                                 <span class="pcoded-mtext" data-i18n="nav.dash.main">Rechazar</span>
                                                                                 <span class="pcoded-mcaret"></span>
                                                                                 </button>

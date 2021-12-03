@@ -1,3 +1,13 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['rol'])){
+		header('location: ../../index.html');
+	}else{
+	if($_SESSION['rol'] != 1){
+		header('location: ../../index.html');
+	}	
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -113,11 +123,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="../index.php">
-                          <img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
+                      <a>
+                          <img class="img-fluid" src="../../assets/images/logo.png" alt="Theme-Logo" />
                       </a>
                   </div>
                 
@@ -158,37 +165,37 @@
                                 </a>
                             </li>
                               <li class=" ">
-                                  <a href="alumnos.html" class="waves-effect waves-dark">
+                                  <a href="alumnos.php" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                       <span class="pcoded-mtext" data-i18n="nav.dash.main">Alumnos</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
                               <li class=" ">
-                                    <a href="carreras.html" class="waves-effect waves-dark">
+                                    <a href="carreras.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-pencil"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Carreras</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 </li>
                             <li class=" ">
-                                <a href="personal.html" class="waves-effect waves-dark">
+                                <a href="personal.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-notepad"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Personal</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="active">
-                                <a href="foro.html" class="waves-effect waves-dark">
+                                <a href="foro.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-comments"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Foro</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class=" ">
-                                <a href="permisos_aceptados.html" class="waves-effect waves-dark">
+                                <a href="permisos_aceptados.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos Aceptados</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -196,7 +203,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Datos</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class=" ">
-                                <a href="reg_datos.html" class="waves-effect waves-dark">
+                                <a href="reg_datos.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-write"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Registrar Nuevos Datos</span>
                                     <span class="pcoded-mcaret"></span>
@@ -206,7 +213,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sesión</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class=" ">
-                                <a href="index.html" class="waves-effect waves-dark">
+                                <a href="actions/cerrars.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Cerrar Sesión</span>
                                     <span class="pcoded-mcaret"></span>
@@ -250,7 +257,7 @@
                                     <!-- Hover table card start -->
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Permisos Solicitados</h5>
+                                                <h5>Foro</h5>
                                                 <div class="card-header-right">
                                                     <ul class="list-unstyled card-option">
                                                         <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -263,66 +270,26 @@
                                             </div>
                                             <div class="card-block table-border-style">
                                                 <div class="table-responsive">
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr class="bg-primary">
-                                                                <th>Matrícula</th>
-                                                                <th>Apellido Paterno</th>
-                                                                <th>Apellido Materno</th>
-                                                                <th>Nombre</th>
-                                                                <th>Fecha</th>
-                                                                <th>Tipo de Permiso</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">4</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">5</th>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                    
+                                                <?php
+                                                    include_once('../../bd/db.php');
+                                                    $sql='SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user INNER JOIN carrera ON tbl_user.idcarrera = carrera.idcarrera INNER JOIN cuatrimestre ON tbl_user.idcuatrimestre = cuatrimestre.idcuatrimestre INNER JOIN grupo ON tbl_user.idgrupo = grupo.idgrupo 
+                                                    WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso="Autorizado" ORDER BY tx_carrera ASC';
+                                                    $result=mysqli_query($con,$sql);
+
+                                                    while($mostrar=mysqli_fetch_array($result)){
+                                                        ?>
+
+                                                        <tr>
+
+                                                        <td>Se les informa al personal docente que el alumno <?php echo($mostrar['tx_appaterno']." ". $mostrar['tx_apmaterno']." ". $mostrar['tx_nombreuser'])?></td> 
+                                                        <td> de la carrera <?php echo ($mostrar['tx_carrera']." del ". $mostrar['tx_cuatrimestre']." ". $mostrar['tx_grupo'])?></td>
+                                                        <td>, se le autorizó un permiso escolar para el día <?php echo($mostrar['dias']." de ". $mostrar['mes']." del año en curso, en el horario de ". $mostrar['horario'])?>.</td>
+                                                        <td> Se les solicita a los docentes de la academia correspondiente tomarlo en cuenta, por su comprensión, gracias.</td>
+                                                        </tr>
+                                                        <?php 
+                                                    }
+                                                ?>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,3 +1,13 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['rol'])){
+		header('location: ../../index.html');
+	}else{
+	if($_SESSION['rol'] != 1){
+		header('location: ../../index.html');
+	}	
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -113,11 +123,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
+                      <a>
                           <img class="img-fluid" src="../../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
                       </a>
                   </div>
                 
@@ -188,7 +195,7 @@
                             <li class=" ">
                                 <a href="permisos_aceptados.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos Aceptados</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Permisos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -310,14 +317,12 @@
                                                                         <td><?php echo $mostrar['tx_grupo'] ?></td>
                                                                         <td><?php echo $mostrar['dt_registro'] ?></td>
                                                                         <td>
-                                                                            <a href="actions/deleteT.php?id=<?php print $mostrar['id_tutor'] ?>" class="waves-effect waves-dark">
-                                                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Eliminar |</span>
-                                                                            <span class="pcoded-mcaret"></span>
+                                                                            <a href="modT.php?id=<?php print $mostrar['id_tutor'] ?>" class="btn btn-info btn-round waves-effect waves-dark">
+                                                                            Modificar
                                                                             </a>
-                                                                            
-                                                                            <a href="modT.php?id=<?php print $mostrar['id_tutor'] ?>" class="waves-effect waves-dark">
-                                                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">| Modificar</span>
-                                                                            <span class="pcoded-mcaret"></span>
+
+                                                                            <a href="actions/deleteT.php?id=<?php print $mostrar['id_tutor'] ?>" class="btn btn-danger btn-round waves-effect waves-dark">
+                                                                            Eliminar
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -377,14 +382,12 @@
                                                                             <td><?php echo $mostrar['tx_password'] ?></td>
                                                                             <td><?php echo $mostrar['dt_registro'] ?></td>
                                                                             <td>
-                                                                                <a href="actions/deleteD.php?id=<?php print $mostrar['idtbl_user'] ?>" class="waves-effect waves-dark">
-                                                                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Eliminar |</span>
-                                                                                <span class="pcoded-mcaret"></span>
+                                                                                <a href="modD.php?id=<?php print $mostrar['idtbl_user'] ?>" class="btn btn-info btn-round waves-effect waves-dark">
+                                                                                Modificar
                                                                                 </a>
                                                                                 
-                                                                                <a href="modD.php?id=<?php print $mostrar['idtbl_user'] ?>" class="waves-effect waves-dark">
-                                                                                <span class="pcoded-mtext" data-i18n="nav.dash.main">| Modificar</span>
-                                                                                <span class="pcoded-mcaret"></span>
+                                                                                <a href="actions/deleteD.php?id=<?php print $mostrar['idtbl_user'] ?>" class="btn btn-danger btn-round waves-effect waves-dark">
+                                                                                Eliminar
                                                                                 </a>
                                                                             </td>
                                                                         </tr>

@@ -1,10 +1,10 @@
 <?php 
 	session_start();
 	if(!isset($_SESSION['rol'])){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}else{
 	if($_SESSION['rol'] != 2){
-		header('location: ../login/index.html');
+		header('location: ../index.html');
 	}	
 	}
     $tutor=$_SESSION['nombre'];
@@ -124,11 +124,8 @@
                               </div>
                           </div>
                       </div>
-                      <a href="index.html">
+                      <a>
                           <img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo" />
-                      </a>
-                      <a class="mobile-options waves-effect waves-light">
-                          <i class="ti-more"></i>
                       </a>
                   </div>
                 
@@ -177,7 +174,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sesión</div>
                           <ul class="pcoded-item pcoded-left-item">
                             <li class=" ">
-                                <a href="../index.html" class="waves-effect waves-dark">
+                                <a href="cerrars.php" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b></b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Cerrar Sesión</span>
                                     <span class="pcoded-mcaret"></span>
@@ -233,59 +230,25 @@
                                             </div>
                                             <div class="card-block table-border-style">
                                                 <div class="table-responsive">
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr class="bg-primary">
-                                                                <th>Matrícula</th>
-                                                                <th>Apellido Paterno</th>
-                                                                <th>Apellido Materno</th>
-                                                                <th>Nombre</th>
-                                                                <th>Dias del permiso</th>
-                                                                <th>Motivo</th>
-                                                                <th>N° de Permiso</th>
-                                                                <th>Status</th>
-                                                                <th>Fecha de solicitud</th>
-                                                                <th>Observación</th>
-                                                                <th></th>
+                                                    <?php
+                                                        include_once('../bd/db.php');
+                                                        $sql='SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user INNER JOIN carrera ON tbl_user.idcarrera = carrera.idcarrera INNER JOIN cuatrimestre ON tbl_user.idcuatrimestre = cuatrimestre.idcuatrimestre INNER JOIN grupo ON tbl_user.idgrupo = grupo.idgrupo 
+                                                        WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso="Autorizado" ORDER BY tx_carrera ASC';
+                                                        $result=mysqli_query($con,$sql);
+
+                                                        while($mostrar=mysqli_fetch_array($result)){
+                                                            ?>
+
+                                                            <tr>
+
+                                                            <td>Se les informa al personal docente que el alumno <?php echo($mostrar['tx_appaterno']." ". $mostrar['tx_apmaterno']." ". $mostrar['tx_nombreuser'])?></td> 
+                                                            <td> de la carrera <?php echo ($mostrar['tx_carrera']." del ". $mostrar['tx_cuatrimestre']." ". $mostrar['tx_grupo'])?></td>
+                                                            <td>, se le autorizó un permiso escolar para el día <?php echo($mostrar['dias']." de ". $mostrar['mes']." del año en curso, en el horario de ". $mostrar['horario'])?>.</td>
+                                                            <td> Se les solicita a los docentes de la academia correspondiente tomarlo en cuenta, por su comprensión, gracias.</td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php
-                                                              include_once('../bd/db.php');
-                                                              $tutor=$_SESSION['nombre'];
-                                                              $sql="SELECT * FROM tbl_user INNER JOIN solicitudpermiso_tbl_user WHERE solicitudpermiso_tbl_user.idtbl_user = tbl_user.idtbl_user AND tx_statuspermiso='pendiente' AND tutor=$tutor";
-                                                              $result=mysqli_query($con,$sql);
-
-                                                              while($mostrar=mysqli_fetch_array($result)){
-                                                                  ?>
-
-                                                                  <tr>
-                                                                      <td><?php echo $mostrar['matriculauser'] ?></td>
-                                                                      <td><?php echo $mostrar['tx_appaterno'] ?></td>
-                                                                      <td><?php echo $mostrar['tx_apmaterno'] ?></td>
-                                                                      <td><?php echo $mostrar['tx_nombreuser'] ?></td>
-                                                                      <td><?php echo ($mostrar['dias']." de ". $mostrar['mes']." del ". $mostrar['anio'])?></td>
-                                                                      <td><?php echo $mostrar['motivo'] ?></td>
-                                                                      <td><?php echo $mostrar['No_permiso'] ?></td>
-                                                                      <td><?php echo $mostrar['tx_statuspermiso'] ?></td>
-                                                                      <td><?php echo $mostrar['dt_solicitud'] ?></td>
-                                                                      <td><input type="text" name="observaciones" placeholder="Observaciones"></td>
-                                                                      <td>
-                                                                        <a href="" class="waves-effect waves-dark">
-                                                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Aceptar |</span>
-                                                                        <span class="pcoded-mcaret"></span>
-                                                                        </a>
-                                                                        
-                                                                        <a href="" class="waves-effect waves-dark">
-                                                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">| Rechazar</span>
-                                                                        <span class="pcoded-mcaret"></span>
-                                                                        </a>
-                                                                  </tr>
-                                                                  <?php 
-                                                              }
-                                                          ?>
-                                                        </tbody>
-                                                    </table>
+                                                            <?php 
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
